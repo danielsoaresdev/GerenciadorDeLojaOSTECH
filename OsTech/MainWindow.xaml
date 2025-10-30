@@ -6,20 +6,151 @@
         xmlns:local="clr-namespace:OsTech"
         mc:Ignorable="d"
         WindowStyle="None"
-        Title="OsTech" Height="450" Width="800" Background="White">
+        AllowsTransparency="True"
+        Title="OsTech" 
+        Height="570" Width="1200" 
+        Background="White"
+        ResizeMode="CanResizeWithGrip">
 
     <Grid>
-        
-        <Rectangle Fill="Black" 
-                   Width="588" 
-                   HorizontalAlignment="Left" 
-                   Margin="226,0,0,0"
-                   Panel.ZIndex="1"/>
+        <!-- BACKGROUND -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="3*"/>
 
-        <Image Margin="289,124,49,124" 
+        </Grid.ColumnDefinitions>
+        <Rectangle 
+                   Fill="Black" Grid.Column="0"/>
+        
+        <Rectangle Grid.Column="1" 
+                   Fill="White"/>
+
+
+        <Rectangle Grid.Column="1"
+                   Grid.ColumnSpan="1"
+                   Width="50"
+                   Panel.ZIndex="1"
+                   HorizontalAlignment="Right" >
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#00FFFFFF" Offset="0.0"/>
+                    <GradientStop Color="Black" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        
+        <Rectangle Grid.Column="1"
+                   Grid.ColumnSpan="1"
+                   Width="50"
+                   Panel.ZIndex="2"
+                   HorizontalAlignment="left" >
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#00FFFFFF" Offset="1.0"/>
+                    <GradientStop Color="Black" Offset="0.0"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Image Margin="46,128,51,128" 
                Source="/logo.png" 
                Stretch="Fill"
-               Panel.ZIndex="2"/>
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               Grid.Column="0"/>
+        
+        <!-- LOGIN -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
+            <TextBlock Text="Bem-vindo a OSTECH!"
+                   Grid.Row="0"
+                   FontSize="25"
+                   FontWeight="bold"
+                   Foreground="#D96744"
+                   HorizontalAlignment="center"
+                   Padding="0,25,0,0"/>
+
+            <TextBlock Text="E-mail"
+                   Grid.Row="1"
+                   FontSize="17"
+                   FontWeight="bold"
+                   Foreground="#2C3E50"
+                   HorizontalAlignment="Center"
+                   Padding="0,55,0,0"
+                   Margin="0,0,0,-5"/>
+
+            <TextBox Text="" 
+                     Grid.Row="2"
+                     FontSize="16"
+                     Padding="10"
+                     Margin="40,10"/>
+
+            <TextBlock Text="Senha:"
+                   Grid.Row="3"
+                   FontSize="17"
+                   FontWeight="bold"
+                   Foreground="#2C3E50"
+                   HorizontalAlignment="Center"
+                   Padding="0,10,0,0"
+                   Margin="0,0,0,-5"/>
+
+            <PasswordBox Grid.Row="4"
+                         FontSize="16"
+                         Padding="10"
+                         Margin="40,10"/>
+
+            <CheckBox Content="Manter conectado"
+                      Grid.Row="5"
+                      Foreground="Black"
+                      HorizontalAlignment="Left"
+                      Margin="40,0,0,0"/>
+
+            <TextBox Grid.Row="5"
+                       Text="Esqueceu a senha?"
+                       Foreground="#D96744"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Cursor="Hand"
+                       Margin="0,0,40,0"/>
+
+            <Button Grid.Row="6"
+                    Content="ENTRAR"
+                    Margin="40,35,40,0"
+                    Padding="12,10,0,10"
+                    FontSize="16"
+                    FontWeight="bold"
+                    Background="#88B464"
+                    Foreground="white"
+                    BorderThickness="0"
+                    Cursor="Hand"/>
+
+            <TextBlock Text="NÃO POSSUI UMA CONTA?"
+                   Grid.Row="7"
+                   FontSize="16"
+                   FontWeight="bold"
+                   Foreground="#2C3E50"
+                   HorizontalAlignment="center"
+                   VerticalAlignment="Bottom"
+                   Padding="0,100,0,0"/>
+            
+            <TextBox Grid.Row="8"
+                       Text="Cadastre-se agora!"
+                       Foreground="#D96744"
+                       HorizontalAlignment="center"
+                       VerticalAlignment="Center"
+                       Cursor="Hand"
+                       Margin="0,8,0,0"/>
+        </Grid>
     </Grid>
 </Window>
