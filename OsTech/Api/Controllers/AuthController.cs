@@ -21,8 +21,11 @@ namespace API.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest req)
         {
+            if (req == null || string.IsNullOrEmpty(req.Email) || string.IsNullOrEmpty(req.Senha))
+                return BadRequest("Dados inválidos");
+
             var user = _db.Usuarios.FirstOrDefault(u => u.Email == req.Email);
-            if (user == null || !BCrypt.Verify(req.Senha, user.SenhaHash))
+            if (user == null || !BCrypt.Net.BCrypt.Verify(req.Senha, user.PasswordHash))
                 return Unauthorized("Dados inválidos");
 
             var token = GerarToken(user);
@@ -31,16 +34,20 @@ namespace API.Controllers
 
         private string GerarToken(Usuario user)
         {
+            // Removido aviso de nulo: user já foi validado no Login
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("chave_secreta_muito_longa_1234567890"));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]
             {
                 new Claim("id", user.Id.ToString()),
-                new Claim("email", user.Email)
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
             };
 
             var token = new JwtSecurityToken(
+                issuer: null,
+                audience: null,
                 claims: claims,
                 expires: DateTime.Now.AddHours(2),
                 signingCredentials: creds
@@ -52,7 +59,7 @@ namespace API.Controllers
 
     public class LoginRequest
     {
-        public string Email { get; set; } = "";
-        public string Senha { get; set; } = "";
+        public string Email { get; set; } = string.Empty;
+        public string Senha { get; set; } = string.Empty;
     }
 }

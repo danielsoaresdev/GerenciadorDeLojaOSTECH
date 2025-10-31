@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "GerenciadorDeLojaOSTECH.API": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:49481;http://localhost:49482"
+    }
+  }
+}

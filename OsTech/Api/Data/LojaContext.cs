@@ -1,6 +1,5 @@
 ﻿using API.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 namespace API.Data
 {
@@ -8,6 +7,6 @@ namespace API.Data
     {
         public LojaContext(DbContextOptions<LojaContext> options) : base(options) { }
 
-        public DbSet<Usuario> Usuarios => Set<Usuario>();
+        public DbSet<Usuario> Usuarios { get; set; }
     }
 }
